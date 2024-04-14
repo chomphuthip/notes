@@ -1,0 +1,35 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-13T07:08:00+09:00
+
+====== NAT ======
+Created Wednesday 13 September 2023
+
+inside - devices behind router doing the NAT
+outside - devices outside of the router doing the NAT
+
+local - internal IP
+global - public IP
+
+inside local - IP of device before translation
+inside global - public IP of device after translation
+
+outside local - IP of device outside after translation
+outside global - IP of device outside before translation
+
+you can have outside local if you wanted to hide/translate public IPs or something
+
+PAT
+	ip nat inside source list  <ACL_OF_DEVICES_YOU_WANT_TO_NAT> interface <outside interface> overload
+	You specify the interface because NAT will select the IP configured on that interface as the IP for all packets being translated
+Pooled NAT
+	ip nat inside source list  <ACL_OF_DEVICES_YOU_WANT_TO_NAT> pool <pool name>
+Static NAT
+	ip nat inside source static <local IP> <global IP>
+
+after translation is opposite
+
+|        | Inside               | Outside              |
+|:-------|:---------------------|:---------------------|
+| Local  | internal, before NAT | internal, after NAT  |
+| Global | External, after NAT  | external, before NAT |

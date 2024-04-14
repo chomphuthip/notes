@@ -1,0 +1,47 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-21T06:00:23+09:00
+
+====== NAT ======
+Created Thursday 21 September 2023
+
+== Static ==
+int <outside>
+ ip nat outisde
+int <inside>
+ ip nat inside
+
+
+!to get an inside ip to be able to talk outside
+ip nat inside source static <inside local IP> <inside global IP>
+
+!map outside global IP to local IP
+ip nat outisde source static <outside global IP> <outside local IP>
+
+== Pool ==
+int <outside>
+ ip nat outisde
+int <inside>
+ ip nat inside
+
+!make acl, IP permitted will use nat
+ip access-list standard <acl name>
+ permit <ips to permit> <wildcard>
+
+!designate pool
+ip nat pool <pool name> <starting IP> <ending IP> prefix-length <prefix length in decimal>
+
+!put it all together
+ip nat inside source list <acl name> pool <pool name>
+
+== PAT ==
+int <outside>
+ ip nat outisde
+int <inside>
+ ip nat inside
+
+!make acl, IP permitted will use nat
+ip access-list standard <acl name>
+ permit <ips to permit> <wildcard>
+
+ip nat inside source list <acl name> int <interface with address you want to use> overload

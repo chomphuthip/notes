@@ -1,0 +1,99 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-21T18:52:06+09:00
+
+====== syslog & Netflows ======
+Created Thursday 21 September 2023
+
+== LOGGING ==
+!logging should be on, but if its off, turn it on
+logging on 
+
+logging host <logging server>
+logging host <logging server> transport tcp port <tcp syslog server port>
+
+logging source-interface <int>
+
+logging severity 7
+
+--------------------
+===== HOW TO TELL THE DIFFERENCE =====
+
+1. ingress/egress is Netflow, input/output is Flexible Netflow
+2. all except sampler and applying the monitor to the interface, Flexible Netflow commands start with 'flow' instead of 'ip flow'
+3. ip flow (ingress|egress) is netflow, ip flow monitor is flexible netflow
+
+
+
+== Netflow ==
+int g0/0
+ ip flow ingress
+ ip flow egress
+!
+!
+ip flow-export destination 1.1.1.1
+
+== Flexible Netflow ==
+sampler POOPSAMPLER
+ mode detereministic 1 out-of 100
+!
+flow record POOPRECORD
+ match ipv4 destination prefix
+ collect counter bytes
+!
+flow exporter POOPEXPORTER
+ destination 1.1.1.1
+ transport udp 9999
+!
+flow monitor POOPMONITOR
+ record POOPRECORD
+ expoter POOPEXPORTER
+!
+int g0/0
+ ip flow monitor POOPMONITOR sampler POOPSAMPLER input
+
+
+
+
+== Netflow ==
+
+ip flow-export version 9
+ip flow-export destination <destination ip> <destination port>
+
+int <interface>
+ ip flow <ingress|egress>
+
+!show flows
+show ip cache flow
+
+!show exporting stats
+show ip flow export
+
+!configure to keep leaderboard of top talkersr
+ip flow-top-talkers
+ top <leaderboard size>
+ sort-by bytes
+
+== Flexible Netflow ==
+!configure our record
+flow record <record name>
+ desc <description>
+ match <keyed field>
+ collect <unkeyed filed>
+
+!configure exporter
+flow exporter <exporter name>
+ desc <description>
+ destination <flexible netflow IP>
+  transport <tcp|udp> <port number>
+  export-protocol netflow-v9
+
+!configure monitor
+flow monitor <monitor name>
+ record <record name>
+ exporter <exporter name>
+ cache timeout active  <time flows will stay in cache in seconds>
+
+!apply the monitor to the port
+int <interface>
+ ip flow monitor <monitor> <input|output>

@@ -1,0 +1,44 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T09:23:03+09:00
+
+====== fhrp ======
+Created Monday 30 October 2023
+
+vrrpv2
+[ ] ip
+[ ] priority
+[ ] timers learn
+[ ] timers advertise
+[ ] preempt delay minimum
+[ ] shutdown
+[ ] authentication text
+[ ] authentication md5 key-string
+[ ] authentication md5 key-chain
+
+vrrpv3
+[ ] fhrp version vrrp v3
+[ ] vrrp [group] address-family ipv4
+[ ] address
+[ ] preempt delay minimum
+[ ] timers advertise [ms]
+[ ] priority
+
+hsrp
+[ ] ip
+[ ] timers [hello time] [hold time]
+[ ] authentication text
+[ ] authentication md5 key-string
+[ ] authentication md5 key-chain
+[ ] priority
+[ ] preempt
+
+glbp
+[ ] timers
+[ ] ip
+[ ] load-balancing [host-dependent | round-robin | weighted]
+[ ] weighting [current] lower [stop forwarding] upper [start forwarding again]
+[ ] priority
+[ ] preempt
+[ ] authentication
+

@@ -1,0 +1,27 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T09:28:38+09:00
+
+====== tunneling ======
+Created Monday 30 October 2023
+
+Crypto Map
+[ ] policy
+[ ] transform set
+[ ] key
+[ ] acl
+[ ] crypto map
+	[ ] peer
+	[ ] transform set
+	[ ] match acl
+
+IPsec Profle
+[ ] policy
+[ ] key
+[ ] transform set
+[ ] profile
+
+[ ] Static GRE
+[ ] source
+[ ] dest
+[ ] ipsec

@@ -1,0 +1,18 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-28T16:53:31+09:00
+
+====== RSTP ======
+Created Saturday 28 October 2023
+
+Instead of doing things by timers, RSTP allows switches to act autonomously
+
+In STP, all BPDUs originate from the root bridge and are forwarded down.
+	If a downstream switch didn't recieve a BPDU for 20 seconds, it would be safe to assume that the upstream switch is unavailable
+		because its not doing its job.
+	Then it would transition into its other states
+
+In RSTP, all switches (not just root bridge) can send out BPDUs. This means that switches can ask if the upstream switch is alive themselves.
+	They no longer have to wait for 20 seconds.
+	They can just ask 'Hey, are you alive?' and then start transitioning another port into forwarding if need be.
+

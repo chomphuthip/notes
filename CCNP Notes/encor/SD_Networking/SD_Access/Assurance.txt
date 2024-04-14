@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-11-06T16:21:00+09:00
+
+====== Assurance ======
+Created Monday 06 November 2023
+
+Use Client 360 if someone has a problem with their device and give their name
+Client 360 should lead to the Device 360
+
+Path trace to traceroute device.
+	Since SD Access integrates everything together it might straight up tell you what the problem is
+
+

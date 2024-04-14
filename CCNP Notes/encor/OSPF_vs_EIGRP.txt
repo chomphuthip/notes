@@ -1,0 +1,33 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-11-03T06:14:45+09:00
+
+====== OSPF vs EIGRP ======
+Created Friday 03 November 2023
+
+OSPF shares LSAs
+Types of LSAs:
+1. All networks a router is attached to
+2. Broadcast segment with multiple OSPF routers
+3. One route from outside the area
+4. A route to the ASBR
+5. A route from outside the OSPF domain
+
+All the routers will use these bits of information to calculate the best interface to send out packets in order to reach a network
+	and then elect that route to be added to the routing table
+
+EIGRP
+1. It costs 10 for Router A to reach Network X
+2. Router A tells Router B 
+	a. Network X is downstream from me with a cost of 10
+3. It costs Router B 20 to get the Router A
+4. Router B tells router C
+	a. Network XS is downstream from me with a cost of 30
+5. DO this forever
+
+EIGRP has faster convergence because EIGRP's protocol has less overhead
+
+feasibility condition - i can use you as a next hop only if the distance between you and the network is less than the distance between
+	me and the network
+
+

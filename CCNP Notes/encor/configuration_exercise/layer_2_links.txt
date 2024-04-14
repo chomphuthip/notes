@@ -1,0 +1,33 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T09:32:32+09:00
+
+====== layer 2 links ======
+Created Monday 30 October 2023
+
+DTP
+[ ] switchport mode dynamic auto
+[ ] switchport mdoe dynamic desirable
+[ ] switchport nonnegotiate
+
+VTP
+[ ] vtp client
+[ ] vtp server
+[ ] vtp pruning
+[ ] vtp transparent
+[ ] vtp domain [name]
+[ ] vtp version 2
+[ ] vtp version 3
+
+FOR LINK AGGREGATION, THE PORT TYPE IS BASED ON THE UNDERLYING PORT TYPES (ROUTED OR SWITCHPORT)
+
+PAGP
+[ ] channel-group X mode auto
+[ ] channel-group X mode desirable
+
+LACP
+[ ] channel-group X mode active
+[ ] channel-group X mode passive
+
+Static Link Aggregation
+[ ] channel-group X mode on

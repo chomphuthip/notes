@@ -1,0 +1,40 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T09:04:19+09:00
+
+====== configuration exercise ======
+Created Monday 30 October 2023
+
+high availability
+	nsr
+	nsf
+	sso
+fhrp
+	vrrp (heirachical and classic)
+	hsrp
+	glbp
+qos
+	qos policy map
+tunneling
+	static gre
+	ipsec profile
+	ipsec crypto map
+layer 2 links
+	dtp
+	vtp
+	LACP
+	PAGP
+spanning tree
+	PVST
+	RPVST
+	MST
+security/monitoring
+	nat
+	ntp
+	snmp
+	netflow/ f netflow
+	netconf restconf
+device access
+	local user
+	aaa
+	lines (vty/console/aux)

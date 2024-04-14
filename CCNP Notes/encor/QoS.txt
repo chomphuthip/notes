@@ -1,0 +1,72 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-16T14:37:11+09:00
+
+====== QoS ======
+Created Saturday 16 September 2023
+
+Best effort is nothing
+IntServ is requires signalling and is very rigid
+DiffServ is usually the best solution
+
+You have two ways to differentiate between traffic:
+1. Classification, differentiating through analyzing the traffic
+2. Marking, differentiating through analyzing tags
+
+You can do layer 2 marking using the PCP and DEI fields in the 802.1q tag header
+	Priority Code Point field (3 bits): actual priority, higher is better
+	Drop Eligible Indicator (1 bit): if this frame can be dropped during congestion
+
+BUT, because its in a 802.1q tag header, if it reaches a router, the router might not recognize it beacuse its
+	not configured to deal with 802.1q
+
+So in order to do qos accross the entire network, you should implement tagging at all layers
+
+Layer 3 qos marking has two options
+1. IP precedence: old and only gives you 6 priority levels
+2. DSCP: new and gives you 6 bits (decimal 0 to 63)  to classify your traffic
+
+Now that you can use DSCP to mark your data, you need to figure out how its going
+	to be used, called per hop behaviors, given to us by the IETF
+
+Different DSCP values belong to different per hop behaviors
+	DSCP 46 is express forwarding
+	DSCP 0 is best effort (no prioritization)
+	DSCP 36 belongs to assured forwarding and AF42
+
+We don't have to use any of those schemes and we can create our own, but these are the most common
+	since theyre standardized
+
+IETF gave us 2 multi-level schemes:
+1. Class selector (CS): exactly like IP precedence, use first 3 bits to prioritize traffic
+2. Assured forwarding (AF): uses the first 3 bits to assign a class 1-4, the next 2 bits to decide drop precedence
+	and reserving the last bit
+
+WRED, the algorithm to decide whether or not to drop traffic and when and why, looks at AF values to make decisions
+	so if you want your traffic dropped without doing super custom configurations, stay with AF
+
+When you want to control traffic you have two options
+1. Policing: drop packets or remark packets after they hit a certain threshold
+2. Shaping: hold packets and wait until enough bandwidth is available to send it
+
+If you set a minimum to start dropping using WRED, thats //exceed// 
+If you set a maximum to start dropping all traffic, thats //violate//
+
+Three types of policers
+1. Single-rate two-color policer
+2. Single-rate three-color policer
+3. Double-rate three-color policer
+
+Single Rate Two Color: set a threshold. any more traffic than that threshold is excess
+Single Rate Three Color: collect that excess traffic, set another threshold, any excess traffic above that is violating traffic .
+Double Rate three Color: set excess threshold. do not collect the excess traffic, just set another threshold. anything above is violating
+
+Tail drop: once buffer is full, no more can enter
+Random early detection (RED): as buffer is approaching becoming full, start randomly dropping packets
+
+When doing TCP, its better to have a spotty connection because you can still create a TCP connection with dropped packets here and there
+But with tail drop, no can do.
+
+
+
+

@@ -1,0 +1,27 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-13T19:55:35+09:00
+
+====== AAA ======
+Created Wednesday 13 September 2023
+
+TACACS = logging into switches
+RADIUS = authenticator forwards credentials from supplicant to authentication server, if authentication server says ok, port is opened
+	guy wants to get into club, bouncer asks club owner if guy can come in, bouncer lets the guy in
+
+aaa <authe|autho|ac> <part of the AAA process> <name of AAA method> [order of methods seperated by spaces] 
+
+aaa authentication login
+aaa authentication enable
+aaa authorization exec 
+
+once you configure at least these for a method you can apply the method to a line
+
+login authentication <AAA method>
+
+make sure you put in your key for both ends
+
+YOU HAVE TO APPLY THE AUTHENTICATION METHOD TO THE LINE OR DEFAULT METHOD WILL BE USED
+
+aaa authorization exec - execute commands
+aaa authorization config-commands - make configuration changes
