@@ -1,0 +1,18 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T09:28:01+09:00
+
+====== qos ======
+Created Monday 30 October 2023
+
+[ ] ACLs
+[ ] Class Map
+	[ ] class-map TRAFFIC_TYPE
+		[ ] match access-group name ACL_NAME
+[ ] Policy Map
+	[ ] policy-map CoPP 
+		[ ] class TRAFFIC_TYPE
+			[ ] police 64000 2000 conform-action transmit exceed-action transmit violate-option transmit
+[ ] control-plane
+	[ ] service-policy input CoPP
+

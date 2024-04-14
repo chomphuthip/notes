@@ -1,0 +1,78 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-19T17:34:42+09:00
+
+====== configuration training ======
+Created Tuesday 19 September 2023
+====== TOPOLOGY CHANGE = SAVED AUTOMATICALLY ======
+====== CONFIGURATION CHANGE = NEEDS TO BE WRed TO BE SAVED ======
+====== (dont wr, just close and open again) ======
+{{.\pasted_image.png}}
+
+Configure and verify (clear by formatting as a check box list again)
+	
+[*] RSTP
+	[ ] {{.\pasted_image004.png}}
+[*] MST
+	[ ] {{.\pasted_image005.png}}
+[*] OSPF
+	[ ] multi area
+		[ ] {{.\pasted_image007.png}}
+	[ ] summarization
+		[ ] Use above topology
+	[ ] route filtering
+		[ ] Use above topology
+	[ ] p2p networks
+		[ ] Use above topology; TODO figure out commands to verify p2p
+	[ ] broadcast networks
+		[ ] Use above topology, make interfaces on switch area 0; TODO figure out commands to verify broadcast
+	[ ] passive interfaces
+		[ ] Use above topology
+[*] GRE
+	[ ] {{.\pasted_image002.png}}
+[*] IPsec
+	[ ] {{.\pasted_image003.png}}
+	[*] Cryptomap
+	[ ] Profile
+[ ] VRF
+	[ ] {{.\pasted_image001.png}}
+	[ ] (use switch SVI as IP)
+[ ] Static NAT
+	[ ] {{.\pasted_image010.png}}
+[ ] Pooled NAT
+	[ ] Use above topology
+[ ] PAT
+	[ ] Use above topology
+[ ] HSRP
+	[ ] {{.\pasted_image011.png}}
+[ ] VRRP
+	[ ] Use above topology
+[ ] GLBP
+	[ ] Use above topology
+[ ] syslog
+	[ ] Configure on left most router
+[ ] Netflow
+	[ ] Configure on left most router
+[ ] Flexible Netflow
+	[ ] Configure on left most router
+[ ] SPAN
+	[ ] Configure on right mode switch
+	[ ] Filter a VLAN
+[ ] RSPAN
+	[ ] {{.\pasted_image012.png}}
+[ ] ERPSPAN
+	[ ] Flash card if cant
+	[ ] Configure random IP as destination
+	[ ] Filter VLAN
+[ ] IP SLAs
+	[ ] Configure on left most router
+[ ] ACL
+	[ ] Configure on left most router
+[ ] CoPP
+	[ ] Configure on left most router
+[ ] BGP
+	{{.\pasted_image009.png}}
+	[ ] Configure with interfaces connected to switch
+	[ ] Check best path selection
+	[ ] Take out switch
+	[ ] Check best path selection

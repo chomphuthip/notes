@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-26T18:31:09+09:00
+
+====== User Modes ======
+Created Tuesday 26 September 2023
+
+User mode: '>'
+Privileged User mode: '#'
+Global or Global Configuration mode: 'device (config)#'
+	its global because you haven't selected an interface or router or anything
+
+0 is just logout, enable, disable, help, exit
+
+1 lets you ping and traceroute and show int (not show RUN int)

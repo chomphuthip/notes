@@ -1,0 +1,141 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-09T19:28:27+09:00
+
+====== encor weak ======
+Created Saturday 09 September 2023
+
+====== Weak ======
+
+3.1.a Troubleshoot static and dynamic 802.1q trunking protocols
+[ ] Read and explain (1/2)
+[ ] Flashcards (1/5)
+[ ] Configure VTP in packet tracer (1/5)
+[ ] Configure DTP in packet tracer (1/5)
+3.1.b Troubleshoot static and dynamic EtherChannels 
+[ ] Read and explain (1/2)
+[ ] Flashcards (1/5)
+[ ] Configure in packet tracer (1/10)
+3.1.c Configure and verify common Spanning Tree Protocols (RSTP and MST)
+[ ] Read and explain (1/2)
+[ ] Configure spanning tree in packet tracer (1/5)
+[ ] Configure MST in GNS3 (0/5)
+3.2.a Compare routing concepts of EIGRP and OSPF (advanced distance vector vs. link state, load balancing, path selection, path operations, metrics) 
+[ ] Read and explain (1/2)
+[ ] Flashcards (1/7)
+3.2.b Configure and verify simple OSPF environments, including multiple normal areas, summarization, and filtering (neighbor adjacency, point-to-point and broadcast network types, and passive interface)
+[ ] Read and explain (1/2)
+[ ] Configure in packet tracer (1/10)
+3.2.c Configure and verify eBGP between directly connected neighbors (best path selection algorithm and neighbor relationships)
+[ ] Read and explain (1/2)
+[ ] Configure in packet tracer (0/10)
+3.3.a Describe Layer 1 concepts, such as RF power, RSSI, SNR, interference noise, band and channels, and wireless client devices capabilities
+[ ] Read and explain (1/5)
+[ ] Flashcard details (0/5)
+3.3.b Describe AP modes and antenna types
+[ ] Flashcard details (1/5)
+3.3.c Describe access point discovery and join process (discovery algorithms, WLC selection process)
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5)
+3.3.e Troubleshoot WLAN configuration and wireless client connectivity issues
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5)
+3.4.d Describe multicast protocols, such as PIM and IGMP v2/v3
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5)
+3.4.a Describe Network Time Protocol (NTP)
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5) 
+3.4.b Configure and verify NAT/PAT
+[ ] Read and explain (1/2)
+[ ] Configure in packet tracer (1/10)
+
+--------------------
+
+5.1.a Configure Lines and password protection
+[ ] Read and explain (1/2)
+[ ] Configure in packet tracer (1/10)
+5.1.b Authentication and authorization using AAA
+[ ] Read and explain (1/2)
+[ ] Configure in packet tracer (1/10)    
+5.2.a Configure ACLs
+[ ] Read and explain (1/2)
+[ ] Configure in packet tracer (1/10)
+5.2.b Configure CoPP
+[ ] Read and explain (1/5)
+5.5.a Describe Threat defense
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5) 
+5.5.b Describe Endpoint security
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5) 
+5.5.c Describe Next-generation firewall
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5) 
+5.5.d Describe TrustSec, MACsec
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5) 
+5.5.e Describe Network access control with 802.1X, MAB, and WebAuth
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5)
+
+--------------------
+
+6.3 Describe the high-level principles and benefits of a data modeling language, such as YANG 
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5)
+6.4 Describe APIs for Cisco DNA Center and vManage
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5)
+6.5 Interpret REST API response codes and results in payload using Cisco DNA Center and RESTCONF
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5)
+6.6 Construct EEM applet to automate configuration, troubleshooting, or data collection
+[ ] Read and explain (1/5)
+[ ] Configure on GNS3 (0/5)
+6.7 Compare agent vs. agentless orchestration tools, such as Chef, Puppet, Ansible, and SaltStack
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5)
+
+--------------------
+
+1.2.a Wireless deployment models (centralized, distributed, controller-less, controller based, cloud, remote branch)
+[ ] Flashcards (1/10)
+1.6.a Describe QoS components
+[ ] Read and explain (1/5)
+[ ] Flash cards review (1/5)
+1.6.b Describe QoS policy 
+[ ] Read and explain (1/5)
+[ ] Flash cards review (1/5)
+1.7.c Describe FIB vs. RIB
+[ ] Read and explain (1/5)
+
+--------------------
+
+4.1 Diagnose network problems using tools such as debugs, conditional debugs, trace route, ping, SNMP, and syslog
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5) 
+4.2 Configure and verify device monitoring using syslog for remote logging
+[ ] Read and explain (1/2)
+[ ] Configure in packet tracer (1/10)
+4.3 Configure and verify NetFlow and Flexible NetFlow
+[ ] Read and explain (1/5)
+[ ] Configure in packet tracer (1/10)
+4.5 Configure and verify IPSLA
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5)
+[ ] Configure in GNS3 (0/5)
+4.6 Describe Cisco DNA Center workflows to apply network configuration, monitoring, and management
+[ ] Read and explain (1/5)
+[ ] Flashcard details (1/5)
+4.7 Configure and verify NETCONF and RESTCONF
+[ ] Read and explain (1/5)
+[*] Flashcard details (1/5)
+
+--------------------
+
+2.2.a Configure VRF
+[ ] Flash cards (1/10)
+[ ] Configure in GNS3(1/5)
+2.2.b Configure GRE and IPsec tunneling
+[ ] Configure in Packet Tracer (0/5)

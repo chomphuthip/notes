@@ -1,0 +1,55 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-24T17:55:29+09:00
+
+====== Wireless ======
+Created Sunday 24 September 2023
+
+Roams are coordinated between APs using UDP 16666
+	if the mobility peer is inside the subnet, its a layer 2 roam because the UDP 16666 stays in the same subnet
+	if the mobility peer is outside the subnet, its a layer 3 ream beacuse the UDP 16666 has to go to a different subnet
+
+fast roaming is caching stuff
+
+When a client L3 roams to another WLC, the new WLC (foreign/Point of association) encapsulates the IP traffic in a CAPWAP
+	tunnel and sends that traffic to the original WLC (anchor/Point of presence) so the traffic
+
+This is so the client doesn't have to change it's IP as its packets will be going out of the anchor WLC's interface instead of the new one
+
+If you make your dynamic channel assignment too sensetive/too often, it can interrupt service to clients because the APs
+	will constantly be changing radio channels
+
+Mobility Groups are groups of WLCs that do mobility message exchanges that allow intercontroller roams to be coordinated
+	Layer 2: client entry in database is transfered over to foreign AP database
+	Layer 3: client entry in database is copied over to foreign AP database (entry still exists in anchor AP database)
+
+but because clients ultimately choose when they want to roam, if a client roams to an AP with a WLC that is outside the 
+	anchor APs mobility group, the client will simply leave the anchor AP database and join the foreign AP database
+	with no coordination
+
+--------------------
+
+EAP-FAST is the only EAP tunneling method that doesn't use certificates, instead it uses Protected Access Credentials
+	consisting of a shared secret, 'opaque element', and 'other information' (thanks Cisco)
+
+Opaque element is remembered by the client. When doing mutual authentication, the server will extract the opaque element to
+	authenticate the client.
+
+Other information is a unique ID for the PAC, so then you can cache multiple and have a PAC keychain with different PACs for
+	different servers.
+
+--------------------
+
+802.11r
+	client stores key to show to foreign APs attached to a single WLC that is using a RADIUS server.
+		 once they see this key, they will instantly let the client associate with them
+	club wristband for all APs using the same RADIUS server (intra or intercontroller)
+Key caching
+	client stores key to show AP. if ever roams back to that specifc AP, the client will be authenticated instantly
+	club wristband for the same AP if you come back
+CCKM
+	WLC stores keys for each client  and when an intracontroller roam happens, the WLC sends the key to the AP to let them know
+		that the client is cool.
+	The WLC knows the client is cool because the client has Cisco Client Extensions installed on it. (main limitation of CCKM).
+	club wristband for all APs attached to all WLCs inside a mobilty group
+

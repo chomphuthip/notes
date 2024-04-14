@@ -1,0 +1,37 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-28T15:57:21+09:00
+
+====== STP ======
+Created Saturday 28 October 2023
+
+root port is port with lowest distance to the root bridge
+
+for each link between two nonroot bridges there are two possibilities
+1. Desg port to Root port
+2. Desg port to Blk port
+
+Either the link is downstream/upstream, or it is blocking
+
+STP is spanning //tree// protocol, the L2 network should look like a tree
+	Desg to Desg is like a branch recombining with another branch in a tree graph (not supposed to happen)
+
+STP //forces// heirarchical networks with a single active link going upstream
+{{.\pasted_image002.png}}
+Scenario 1:
+A is the root bridge
+STP doesn't make us choose between who is closer between B and C since they aren't connected
+
+Scenario 2:
+STP forces C to be lower in the hierarchy since STP forces hierachy
+B is closer to A, so B gets to be forwarding and C is Blk on the link between B and C
+
+TREES DON'T HAVE LOOPS
+	THERE MIGHT BE A PHYSICAL LOOP, BUT WE CAN  LOGICALLY IGNORE TRAFFIC FROM THE SUPERIOR SWITCH
+
+Port state: blocking, listening, learning, fowarding
+Port role: root, desg, blk
+
+If there are two links of equal cost going upstream, how does the switch know which one to blk and which one to rp
+1. Check the port priority, the one with the lower port priority on the other end is chosen
+2. If the port priority is equal, the link with the lower port number on the other end

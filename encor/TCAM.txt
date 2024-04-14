@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-26T18:29:09+09:00
+
+====== TCAM ======
+Created Tuesday 26 September 2023
+
+CAM: Putting in a set of 1s and 0s will return a pointer
+TCAM: Putting in a set of 1s, 0s, and mask to return a pointer
+
+Because TCAM is so expensive, Cisco had to limit the amount of TCAM in each switch
+But because TCAM is used for a lot of different functions, Cisco gave us away to ration TCAM based on what the device is going to do.

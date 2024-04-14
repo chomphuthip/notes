@@ -1,0 +1,32 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-09T18:08:58+09:00
+
+====== random bits encor ======
+Created Saturday 09 September 2023
+
+You need a route to Null0 in order to match packets that you summerized but don't actually have a route for
+
+You have routes
+1. 10.0.1.0/24
+2. 10.0.2.0/24
+3. 10.0.3.0/24
+4. 10.0.4.0/24
+5. 10.0.5.0/24
+
+You summerize them into 10.0.0.0/16
+What happens to a packet destined for 10.0.6.1?
+{{.\pasted_image.png}}
+Routing loop occurs
+1. Router A and B are EIGRP neighbors and Router A has Router B configured for its default gateway
+2. Router A summerizes 10.0.0.0/16 and gives that route to Router B
+3. Router B gets a packet destined for 10.0.6.1
+4. Router B's FIB matches with 10.0.0.0/16
+5. Router B sends the packet to Router A
+6. Router A checks the longest matching prefix: 0.0.0.0/0 to Router B
+7. Router A sends the packet to Router B
+8. Goes on forever
+
+If you had a Null0 route:
+6. Router A checks the longest matching prefix: 10.0.0.0/16 to Null0
+7. Router A discards the packet

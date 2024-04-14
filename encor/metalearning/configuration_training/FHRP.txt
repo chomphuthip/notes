@@ -1,0 +1,43 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-21T17:56:35+09:00
+
+====== FHRP ======
+Created Thursday 21 September 2023
+
+
+== HSRP ==
+
+int <interface>
+ standby <instance id> ip <vip address>
+
+standby <instance id> priorty <priority number, higher is better>
+
+standby <instance id> preempt
+
+standby <instance id> mac-address <mac address>
+
+standby <instance id> timers <1 to 254 seconds or 15 to 999 milliseconds>
+
+standby <instance id> authentication text <text password> 
+
+== VRRP ==
+
+int <interface>
+ vrrp <instance id> ip <ip address>
+
+ vrrp <instance id> priority <priority>
+
+== HIERARCHICAL VRRP (each instance has their own section) ==
+
+int <interface>
+ vrrp <instance id> address-family <ipv4 | ipv6>
+  address <ip address>
+ priority <priority>
+
+== GLBP ==
+
+int <interface>
+ glbp <instance id> ip <ip address>
+
+glbp <instance id> priority <priority> 

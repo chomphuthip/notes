@@ -1,0 +1,69 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-09T18:33:27+09:00
+
+====== BGP ======
+Created Saturday 09 September 2023
+
+As long as TCP segments can reach the other router, BGP pairing can occur.
+Routers can be 254 hops away or right next to eachother, as long as they can send TCP traffic, they can peer as BGP neighbors
+You need to configure ebgp-multihop
+
+What happens when you configure a //network// statement:
+1. BGP reformates the network statement into network reachability layer information (NRLI) which includes the network and prefix
+2. BGP checks if the NRLI exists in the routers RIB. If it doesn't the //network// statement stays, but BGP doesn't look any further.
+3. BGP adds the NRLI into the Loc-RIB. Loc-RIB (local RIB) is the BGP database.
+4. BGP checks if the next hop is reachable. If not, the NRLI still stays in the Loc-RIB
+5. BGP checks if the NRLI adheres to outbound route policies (don't really know what happens if it doesn't)
+6. BGP adds it to the Adj-RIB-Out
+7. If the NLRI's next-hop BGP prefix attribute is 0.0.0.0, then the next-hop is changed to the router's IP
+
+What happens when an NRLI is recieved:
+1. BGP adds the NRLI into the Adj-RIB-In table
+2. BGP checks if the NRLI adheres to inbound route policies
+3. BGP adds the route to the Loc-RIB.
+4. BGP checks if the next hop is reachable
+5. BGP checks if this path is better than the preexisting path if one exists already
+6. BGP installs it into the router's global RIB
+7. BGP checks if the NRLI adheres to outbound route policies
+8. BGP installs the route in the Adj-RIB-Out table
+
+Prefix Advertisements are notes being passed around autonomous systems.
+	AS routers add their ASN to AS_Path and send it to all peers
+
+Basically if everyone knows about everyone elses routes to where ever, in the event of an emergency,
+	traffic might go where ever (nondeterministic)
+
+You want traffic to flow deterministically so then troubleshooting is easier and your designs actually do something
+	If you design an awesome WAN that saves a bunch of money by not buying more than whats necessary for a circuit
+		but another circuit goes down and suddenly theres a bunch of traffic going through that first circuit, it could get ugly
+
+The best way to ensure deterministic the routing of traffic is to control what routes are being used by routers.
+
+Methods of controlling what routes are being used by BGP routers
+| Method              <| Description                                                                |
+|:---------------------|:---------------------------------------------------------------------------|
+| IP ACLs              | Match based on IP                                                          |
+| Prefix Lists         | Match based on IP but more flexible since we can use ranges                |
+| AS_Path ACLs (regex) | Only cares about AS_Path                                                   |
+| Route Maps           | Uses all the other ones to classify the NRLI and can do funky things to it |
+
+prefix lists
+	prefix has to match
+	prefix length has to meet requirements
+
+iBGP neighbor does not install BGP routes from its iBGP neighbor because the routes should be shared by an actual IGP like OSPF or EIGRP
+
+--------------------
+
+weight: make router prefer path
+local pref: make all routers in AS prefer path
+MED: make eBGP peers prefer path (let other autonomous system know which path you prefer
+
+If you want to manipulate which way you leave the autonomous sytem
+	use weight
+If you want to manipulate which way the neighboring AS enters your system
+	use MED
+
+
+

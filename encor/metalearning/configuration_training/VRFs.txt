@@ -1,0 +1,31 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-19T19:11:45+09:00
+
+====== VRFs ======
+Created Tuesday 19 September 2023
+
+[ ] Configure VRF definition
+[ ] Assign port as VRF port
+[ ] Assign IP
+
+vrf definition <first vrf name>
+ address-family ipv4
+vrf definition <second vrf name>
+ address-family ipv4
+
+router ospf 1 vrf <first vrf name>
+ network <ip of interface you want to be on first vrf> 0.0.0.0 area X
+router ospf 2 vrf <second vrf name>
+ network <ip of interface you want to be on second vrf> 0.0.0.0 area X
+
+int <interface>
+ vrf forwarding <vrf name>
+
+import
+export
+
+route-map <route map> permit
+	match <whatever>
+	set fowarding global
+

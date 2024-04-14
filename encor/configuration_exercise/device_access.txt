@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T09:40:49+09:00
+
+====== device access ======
+Created Monday 30 October 2023
+
+setup
+[ ] create local user
+[ ] enable aaa
+[ ] configure tacacs server
+[ ] configure radius server
+[ ] configure server group
+
+authentication
+[ ] login
+[ ] enable
+[ ] dot1x
+
+authorization
+[ ] console
+[ ] config-commands
+[ ] exec

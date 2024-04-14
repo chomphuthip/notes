@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-21T19:24:49+09:00
+
+====== SLAs ======
+Created Thursday 21 September 2023
+
+!configure IP echo SLA
+ip sla <SLA Number>
+ icmp-echo <destination IP> <source-ip source ip| source-interface source int>
+ frequency <time between pings in seconds>
+
+
+!schedule that hoe
+ip sla schedule <SLA number> life forever start-time now
+
+
+!if you use a UDP or  VOIP SLA where you wont get confimation that its working, you need to configure a responder on the other device
+ip sla responder port <port>
+!
+!or
+!
+ip sla responder udp-echo ipaddress <ip address> port <port> vrf <vrf>

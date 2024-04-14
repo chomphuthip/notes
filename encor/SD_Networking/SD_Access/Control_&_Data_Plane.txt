@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-11-07T05:36:33+09:00
+
+====== Control & Data Plane ======
+Created Tuesday 07 November 2023
+
+LISP tells the router where to send the traffic to (control plane)
+VXLAN encapsulates the frames and sends it there (data plane)
+
+Because of this, the recommended MTU size is 9100
+
+LISP IS ONLY USED TO SELECT THE END DESTINATION AND RETURN THE RLOC (which should tbe the VTEP)
+	THEN THE LOCAL VTEP UNICASTS VXLAN UDP DATAGRAMS TO THE REMOTE VTEP

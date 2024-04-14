@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-15T07:05:37+09:00
+
+====== DNA Center APIs ======
+Created Friday 15 September 2023
+
+Getting a token from DNA center
+1. send an http auth request to https://<dna center>/api/system/v1/auth
+2. get back a token
+
+Using the token
+1. You can now make API calls to dna center, but you need to include the token
+	a. The token is included in the X-Auth-Token header field
+
+
+SD-WAN and vManage you use JSON and get back a java session id

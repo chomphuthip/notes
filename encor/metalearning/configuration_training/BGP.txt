@@ -1,0 +1,110 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-22T05:35:29+09:00
+
+====== BGP ======
+Created Friday 22 September 2023
+
+== Simple Configurations ==
+
+!neighborship
+router bgp <autonomous system number>
+ bgp router-id router-id
+ neighbor <ip address> remote-as <AS num,ber>
+
+!sharing routes (routes wil
+network <ip address> mask <subnet mask>
+
+!redistritbute from ospf into bgp
+ redistribute ospf <process id>
+
+
+match community <community list name  or number>
+!match commuity in route map
+match community <community list name  or number>
+!aggregate addresses
+ aggregate-address <shorter prefix> <shorter prefix mask>
+
+!summerize addresses (ips that are being advertised with //network// statement will still be shared)
+ aggregate-address <shorter prefix> <shorter prefix mask> summary-only
+
+!keep BGP path info when aggregating
+  aggregate-address <shorter prefix> <shorter prefix mask> as-set summary-only
+
+== Simple verifications ==
+
+!show database
+show bgp <address family (ipv4 or ipv6)> <subsequent address family (unicast|multicast)>
+
+!show summary of bgp state
+show bgp summary
+
+!show neighbors
+show bgp neighbors <ip address>
+
+--------------------
+
+== Advanced configurations ==
+
+!configure a prefix list
+ip prefix-list <prefix-list name> seq <sequence number> <prefix network> <prefix mask> <ge|le> <bits>
+ipv6 prefix-list ...
+
+!configure route map entry
+route-map <route map name> <permit|deny> <sequence number>
+
+!configure ACL matching statement in routemap
+match ip address <acl number or name>
+
+!configure prefix list matching statement in routemap
+match ip address prefix-list <prefix list name>
+
+!configure preference in routemap
+match local-preference <preference>
+
+!match commuity in route map
+match community <community list name  or number>
+
+!set community number in routemap
+ set community <community number> <//additive// if you dont want to clobber the community numbers>
+
+!set weight
+ set weight <weight number>
+
+!set local preference
+ set local-preference <set metric number>
+
+!set metric
+ set metric <metric number>
+
+!create regex acl
+ip as-path access-list <acl number> <permit|deny> <regex query>
+
+!create community list
+ip community-list <name or number> <permit|deny> <community number or wellknown name>
+
+!filter routes to neighbor using regular ACL
+router bgp <as>
+ neighbor <ip address> distribute-list <acl number> <in|out>
+
+!filter routes to neighbor using prefix list
+neighbor <ip address> prefix-list <prefix list name> <in|out>
+
+!filter routes to neighbor using regex ACL
+neighbor <ip address> filter-list <regex ACL number> <in|out>
+
+!filter/change routes using routemap
+neighbor <ip address> route-map <routemap name> <in|out>
+
+!use new format to show bgp-community (X:X vs XXXXXX)
+ip bgp-community new-format
+
+== Advanced verification commands ==
+!show community
+show bgp community
+
+!test regex
+show bgp regexp <regex pattern>
+
+!restart bgp
+clear bgp soft

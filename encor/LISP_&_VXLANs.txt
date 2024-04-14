@@ -1,0 +1,69 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-09-24T18:50:57+09:00
+
+====== LISP & VXLANs ======
+Created Sunday 24 September 2023
+
+
+== LISP ==
+Outer encapsulation is router to router
+Inner packet is host to host
+
+Regular IP has Network ID and Host ID in same address
+this is ok but isnt as scalable 
+
+ITR
+	encapsulates packets from hosts
+ETR
+	deencapsulates packets from hosts
+	because they are the ones attached to the hosts and directly sending data their way, they also publish eid-rloc mappings to MS
+xTR
+	does both
+Proxy ITR
+	encapulates packets from a L3 network for traffic going into a LISP domain
+Proxy ETR
+	deencapsulates packets from a LISP domain out to an L3 network
+Proxy xTR
+	does both
+MS
+	mapping server
+	tells ITRs what the RLOCs for EIDs are if it isn't already in their routing table
+
+--------------------
+
+== VXLANs ==
+
+VXLAN switches are called Virtual Ethernet Modules (VEMs)
+
+ Ports that interract with VXLANs are called VTEPs
+	Virtual Tunnel Endpoints
+
+VEM puts Ethernet frame from host into VXLAN-GPO packet (UDP) and unicasts it from its VTEP to other VTEP 
+	Ethernet frame is inside
+	VNI (VXLAN Network Identifier, new VLAN ID) is in header.
+
+Other VEM gets the VXLAN-GPO packet and deencapsulates it, and sends the frame out on the correct VLAN.
+
+Host A: Host behind VEM A
+VEM A: VEM attachted to host A
+VTEP A: VTEP for VEM A
+
+
+Host B: Host behind VEM B
+VEM B: VEM attachted to host B
+VTEP B: VTEP for VEM B
+
+
+Discovery process
+1. Host A sends an ARP request for Host B
+2. VEM A learns about Host A on VXLAN 5000
+3. VEM A encapsulates the ARP request, tags it with VNI 5000 and sends the encapsulated ARP request to multicast group 239.1.1.1
+4. VEM B gets the ARP request and floods it on all ports configured with VXLAN 5000
+5. Host B sends back an ARP response
+6. VEM B sends back the ARP response to VEM A with VTEP B's address
+7. Now VTEP A and VTEP B can unicast encapsulated Ethernet frames to each other
+
+== MAKE VXLAN DECK ==
+	also add priorities to weak pt2 profile
+
