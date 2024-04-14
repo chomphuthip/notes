@@ -1,0 +1,59 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T08:06:09+09:00
+
+====== eigrp-ospf-bgp ======
+Created Monday 30 October 2023
+
+[ ] manipulation
+	[ ] prefix-list exact
+	[ ] prefix-list le
+	[ ] prefix-list ge
+	[ ] route-map deny one permit all
+	[ ] route-map tag one permit all
+
+[ ] eigrp
+	[ ] stub
+	[ ] summary
+	[ ] key chain auth
+	[ ] password auth
+	[ ] redistibution
+	[ ] k values
+	[ ] enable wide metrics
+	[ ] default metrics for redistribution
+	[ ] variance
+
+[ ] ospf
+	[ ] summerization going between area X and area 0
+	[ ] summerization coming into the OSPF domain
+	[ ] stub
+	[ ] nssa
+	[ ] totally stub
+	[ ] totally nssa
+	[ ] virtual link
+	[ ] redistribute with different metric type
+	[ ] authentication
+	[ ] default-information originate
+	[ ] ecmp
+	[ ] activating interface under router config
+	[ ] activating interface under interface config
+	[ ] configuring authentication usage under router config
+	[ ] plain and md5
+	[ ] configuring authentication key under interface
+
+[ ] ospfv3
+	[ ] address family
+	[ ] authentication with keychain
+	[ ] authentication with key
+	[ ] interface activation
+
+[ ] bgp
+	[ ] confederation
+	[ ] templates
+	[ ] bgp default local-pref
+	[ ] neigh x.x.x.x metric
+	[ ] applying route-map
+	[ ] next-hop-self
+	[ ] route-reflector-client
+	[ ] summary-address with the options
+	[ ] as_path regex

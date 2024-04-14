@@ -1,0 +1,41 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-14T12:54:06+09:00
+
+====== eigrp ======
+Created Saturday 14 October 2023
+
+hello
+	 hello keepalive, as well as sharing K values (K values must match before becoming neighbors
+update
+	if first time sharing routes: send all routes, unicast
+	if update: just send updated route, multicast
+query
+	sent out to find a new path for a prefix during convergence
+reply
+	response to query
+ack
+	acknowledge the reply
+request
+	NEVER USED EVER EVER. IN EIGRP BECAUSE RIP HAD IT, BUT QUERY DOES ITS JOB ALREADY
+
+in eigrp, the whole router is in the autonomous system
+in ospf, interfaces can be in different areas
+
+
+
+variance multiplier: how much you are willing to multiply in order to add the worse routes
+	if you want to add a route that is 2 times worse that your best route, your variance is 2
+		all routes that are between 1 and 2 times worse will also be added
+
+3 times worse route and you still want to add?
+	set your variance multiplier to 3
+
+how much worse are you willing to accept?
+	  5 times = 5 variance
+
+
+--------------------
+
+If you have two subnets that are inside a classful prefix and you have auto summary on, it can lead to a route with the wrong prefix
+{{.\pasted_image002.png}}

@@ -1,0 +1,48 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-07T18:36:25+09:00
+
+====== dmvpn ======
+Created Saturday 07 October 2023
+
+Hub configuration
+1. Configure IPsec Profile
+2. Configure tunnel interface
+
+!maps vpn ip to gloabl ip
+ip nhrp map 192.168.0.1 201.69.57.2
+
+!maps all multicasting to real ip of hub; if you want to multicast, send to this address
+ip nhrp map multicast 201.69.57.2
+
+!configure the hub/router resolving IPs and sending traffic when needed
+ip nhrp nhs 192.168.0.1
+
+if you dont configure point to mulitpoint on tunnel, ospf defaults to p2p connection
+	works if only have 1 spoke and 1 hub, but if you add more they will fight over which one is the other end
+	configure point to multipoint and your problems will all go away
+
+!tells a sending spoke the real ip of the recieving spoke so a spoke to spoke tunnel can be formed and used
+ip nhrp redirect
+
+!configures the spoke to use the redirect information given from the dmvpn hub
+ip nhrp shortcut 
+
+== IKEv2 ==
+crypto ikev2 keyring VPN_KEYRING
+ peer PEER1
+  address 1.1.1.1
+  pre-share-key cisco
+!
+crypto ikev2 profile VPN_IKEv2_PROFILE
+ keyring VPN_KEYRING
+ match address local 0.0.0.0
+ match identity remote address 0.0.0.0 0.0.0.0
+ authentication local pre-share
+ authentication remote pre-share
+!
+crypto ipsec transform-set VPN_TSET esp-aes 256 esp-sha-hmac
+!
+crypto ipsec profile VPN_IPSEC_PROFILE
+ set ikev2-profile VPN_IKEv2_PROFILE
+ set transform-set VPN_TSET

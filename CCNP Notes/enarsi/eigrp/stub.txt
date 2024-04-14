@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-14T19:06:15+09:00
+
+====== stub ======
+Created Saturday 14 October 2023
+
+stub routers tell neighbors that they don't have any routers behind them,
+	so during convergence, do not ask for paths
+	they also do not advertise routes to peers
+	ADVERTISES THEIR OWN EIGRP ROUTES
+	LEARNS NEIGHBORS EIGRP ROUTES
+	BUT DOES NOT ADVERTISE THEIR NEIGHBORS EIGRP ROUTES
+{{.\pasted_image001.png}}

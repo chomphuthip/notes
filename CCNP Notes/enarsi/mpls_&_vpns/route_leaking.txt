@@ -1,0 +1,52 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-28T14:06:05+09:00
+
+====== route leaking ======
+Created Saturday 28 October 2023
+
+this is the real reason why RDs and Route Targets are logically decoupled
+
+You can only have one RD, but you have multiple route targets
+1. One route target that you import and export as an individual customer across multiple customer sites
+2. One route target that you only export as part of a group of customers that need Layer 3 access to a resource
+3. And so on...
+
+You can create a Route Target value that incorporates a bunch of CEs and not have them share routing information with each other
+
+Creating a service that multiple customers can use, but it will not allow the customers to direclty talk with eachtother
+1. Create a Route Target for customers that want to access the resource
+2. Create a Route Target for the resource
+3. On all the customers, 
+	a. configure the vrf to import routes with the route target of the resource
+		1. MAKE SURE TO NOT IMPORT THE ROUTE TARGET THAT SHOULD BE ATTACHED TO CUSTOMERS
+		2. IF YOU DO, THE CEs WILL LEARN ABOUT ROUTES THAT DIRECTLY GO TO OTHER CUSTOMERS
+	b. configure the vrf to export routes with the consumer route target added
+4. On the resource VRF
+	a. configure to export with resource route target
+		1. consumers will import routes with this route target
+	b. configure to import routes with consumer route target
+		1. now the resource will learn about how to get back to all the customers
+
+Route leaking can be performed locally on the router
+vrf definition A
+ !
+ address-family ipv4
+ exit-address-family
+vrf definition B
+ !
+ address-family ipv4
+ exit-address-family
+!
+!
+interface GigabitEthernet0/0
+ vrf forwarding A
+ ip address 10.0.0.1 255.255.255.252
+!
+interface GigabitEthernet0/1
+ vrf forwarding B
+ ip address 10.0.1.1 255.255.255.252
+!
+!
+ip route vrf A 10.0.1.0 255.255.255.252 10.0.1.1 global
+ip route vrf B 10.0.0.0 255.255.255.252 10.0.0.1 global

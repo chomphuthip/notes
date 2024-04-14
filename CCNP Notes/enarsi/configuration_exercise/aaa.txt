@@ -1,0 +1,21 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T08:25:25+09:00
+
+====== aaa ======
+Created Monday 30 October 2023
+
+setup
+[ ] enable aaa
+[ ] configure radius server
+[ ] configure tacacs server
+[ ] configure tacacs server group
+
+authentication
+[ ] dot1x
+[ ] login
+[ ] configure different login method for different line type
+[ ] apply different login methods to different line types
+
+authorization
+[ ] per command

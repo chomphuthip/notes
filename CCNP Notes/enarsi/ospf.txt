@@ -1,0 +1,52 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-14T13:04:31+09:00
+
+====== ospf ======
+Created Saturday 14 October 2023
+
+hello - keep alive
+database decription - tells you whats in store
+link-state requests (LSRs) - asking for prefix
+link-state updates (LSUs) - tells you specific LSAs
+link-state ack - acknowledges the LSU
+
+virtual link - connect 
+
+stub - no type 5 or 4 LSAs, type 3 LSA with 0.0.0.0/0 is added to area LSAs
+totally stub - no type 5 or 4 LSAs; all type 3 LSAs replaced with one type 3 LSA with 0.0.0.0/0 prefix and ABR as destination
+nssa - type 5 or 4 LSAs are not allowed in, but type 5 LSAs generated within the area are transformed into type 7 LSAs
+
+
+the default route is added to stub areas because there might be a type 5 LSA they need to get to but dont
+	want in their routing table
+
+States:
+1. down/attempt
+	a. Just started sending hellos
+2. init
+	a. recieved hello from neighbor, but the neighbor field inside the hello packet does not contain the local router's router id
+	b. once you recieve a hello from the neighbor, now you know their router id and can populate the neighbor field in your hello packets
+3. 2way
+	a. recieved hello from neighbor with correct neighbor field
+	b. now we can make decisions about whether or not to procede with creating the adjacency
+		1. this is why in a broadcast segment, all DOTHER neighbors are stuck in the 2way state
+		2. they know about each other but are deciding to not pursue the adjacency further
+4. exstart
+	a. dr/bdr election occurs IF THERE ISNT ONE ALREADY
+5. exchange
+	a. describe what information you have
+	b. 'i have information regarding X and Y' telling them //about// the information, but not necessarily the information itself
+6. loading
+	a. now you start loading the routes
+7. full
+
+The 'neighbor' field in the hello packet decribes the recieving router. If no neighbor is specified, that means that no neighbor has been discovered yet, so the interface remains in the init state
+
+Once hellos start coming in with neighbor field specified as the local router, that is like the remote router acknowledging you as a neighbor
+
+filter-list is filtering between areas
+distribute-list is filtering from the LSDB (OSPF) to the routing table
+	stuff that is matching the distribute-list is not going to be added to the routing table
+
+'area X' configurations that manipulate Type 3 LSAs describe how Type 3 LSAs from area X will interract with area 0, NOT the other way around.

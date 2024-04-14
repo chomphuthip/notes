@@ -1,0 +1,80 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-08T19:24:27+09:00
+
+====== training agenda ======
+Created Sunday 08 October 2023
+
+[*] ipv6 network
+	[*] normal network config
+	[ ] acl
+	[ ] prefix list
+	[*] eigrp
+	[*] ospf
+	[*] bgp
+
+mpls
+dmvpn
+encor review flashcards
+
+--------------------
+
+ipv6 network with summerization
+
+fc00:8D64:AF0C:9999:/64 management
+fc00:8D64:AF0C:1::/64 users1
+fc00:8D64:AF0C:2::/64 users2
+
+!enable ipv6
+ipv6 address auto-config
+
+!configure SLAAC on segment with prefix
+ipv6 address [prefix] eui-64
+
+!best-ish way to configure loopback
+ipv6 address [management prefix]::1/128
+ipv6 address [management prefix]::2/128
+ipv6 address [management prefix]::3/128
+...
+--------------------
+
+== eigrp ==
+[*] stub
+[*] summerization
+[*] variance
+[*] redistribution (with custom metrics)
+	[*] bgp
+	[*] ospf
+[*] k values
+[*] wide metrics
+[ ] authentication
+== ospf ==
+[*] summerization
+[*] area types
+	[*] stub
+	[*] totally stub
+	[*] nssa
+	[*] totally nssa
+[*] virtual link chaining
+[*] E1/E2 redistribution
+[*] authentication
+[*] ecmp
+== ospfv3 ==
+[*] ipv4
+[*] authentication
+[*] interface activation
+== bgp ==
+[*] route-map
+	[*] weight
+	[*] local pref
+	[*] metric
+[*] weight
+[*] local pref
+[*] metric
+[*] peering using loopbacks
+[*] next-hop-self (why)
+[*] route-reflector
+[*] confederation
+[*] summerization
+[*] peer groups
+[*] peer templates

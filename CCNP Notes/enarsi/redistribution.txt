@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-26T06:53:10+09:00
+
+====== redistribution ======
+Created Thursday 26 October 2023
+
+eigrp
+ infinite default seed metric
+
+bgp
+ wont advertise type 5 lsas by default
+
+ospf
+ will default advertise by type 2 by default

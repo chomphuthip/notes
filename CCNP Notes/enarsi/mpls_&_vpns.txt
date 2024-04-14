@@ -1,0 +1,54 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-05T16:28:42+09:00
+
+====== mpls & vpns ======
+Created Thursday 05 October 2023
+
+1. ce shares ospf routes with pe customer vrf ospf
+2. multiprotocol bgp (mpbgp) redistributes routes from customer vrf ospf into vpnv4(or v6) protocol family
+3. mp-bgp is igp peering with another pe router
+4. other pe router redistributes routes from vpnv4 address family into customer vrf
+
+mpls label encapsulates ip packet while itself being encapsulated by frame
+	so basically a layer 3 protocol that encapsulates IP
+
+mpls routers are unique to the router
+	my label for this prefix is X
+	the next hop's label for this prefix is Y
+
+	my word for this is X
+	your word for this is Y
+
+
+vpn labels are unique to the pe peers
+''confi''
+Going through the MPLS network
+{{.\pasted_image001.png}}
+
+After POP/last hop before PE IGP VPNv4 neighbor
+{{.\pasted_image002.png}}
+
+then the PE router uses the L3VPN label to decide which vrf it should go into
+
+The routers use MPLS when talking to eachother in an MPLS network
+
+All your routers in the MPLS network must also be running BGP
+	because iBGP requires either full mesh, route reflectors, or confederation
+
+Schizopostiung
+	vpn packet next hop was 10.0.23.2
+	mpls tries to find a label for 10.0.23.2
+	it can't find label for 10.0.23.2
+	it drops it
+
+	why can't it just use the 10.0.23.0/30 label??
+	idk
+ ITS BECAUSE THE NEXT HOP LABEL NEEDS TO BE FOR A ROUTER, NOT A NETWORK
+
+THE NEXT HOP FOR VPN LABELS HAVE TO BE A LOOPBACK OR ELSE THERE ISNT GOING TO BE AN MPLS LABEL FOR 
+	THAT ROUTER SPECIFICALLY
+
+YOU NEED AN MPLS LABEL SPECIFICALLY FOR THE ROUTER BECAUSE IF NOT ITS GOING TO GET DROPPED AFTER
+	THE MPLS GETS POPPED AND ITS ONLY THE VPNv4 LABEL
+	

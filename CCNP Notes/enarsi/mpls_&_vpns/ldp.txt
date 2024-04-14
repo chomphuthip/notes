@@ -1,0 +1,27 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T19:44:22+09:00
+
+====== ldp ======
+Created Monday 30 October 2023
+
+{{.\pasted_image001.png}}
+
+Everyone in the label switched path (LSP) has an individual label for 10.0.0.0/24
+	BUT HOW?
+
+1. R1 shares a label 3 (implicit null) with R2, saying this is the label for 10.0.0.0/24
+	a. Label 3 is a special label that says "if you need to send a packet to me for 10.0.0.0/24, pop the MPLS label and just forward me the packet)
+	b. thats what implicit null means; you are at the last hop, so just take the mpls label off and give me what is left
+	c. whats left could be a plain ip packet, but it could also be an IP packet WITH a VPN Label before, telling the PE the correct vrf to put it in
+2. R2 decides that its LOCAL label for 10.0.0.0/24 will be 2001 and shares that label with R3
+	a. Now when R3 wants to send a packet to R2 for 10.0.0.0/24, it will use label 2001
+	b. Its like if you want to tell someone about something, you would use their word for it
+3. R3 decides that its local label for 10.0.0.0/24 will be 3001 and shares that label with R4
+	a. R4 now knows that R3 understands the prefix 10.0.0.0/24 as the label 3001
+4. So on and so on through out the ENTIRE MPLS INFRASTRUCTURE
+	a. Even if there are no neighbors that are 'behind' it in the LSP, a router will still generate a router for it
+
+Notice that because all the routers are describe the same route, you can think of the label less of describing the prefix, but more a local name for the LSP itself, since a unique LSP is built for each prefix advertised
+
+it creates a unidirectional graph going back to the source of the shared label

@@ -1,0 +1,59 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-09T05:52:06+09:00
+
+====== ipv6 ======
+Created Monday 09 October 2023
+
+!enable ipv6 routing
+ipv6 unicast-routing
+
+!enable ipv6 interface
+ipv6 addr autoconfig
+
+!statically configure with ipv6 address (also enabling SLAAC)
+ipv6 addr [prefix] eui-64
+
+subnet on the nibble (half a byte)
+
+network id between bit 48 and bit 64
+	if you get a /60 network, you can use the 4 bits after the network id in order to subnet
+	
+ISP gives you (small/medium organization) an IPv6 /60 prefix,
+	128 (address length) - 60 (prefix length/network id) - 64 (host id) = 4 bits to subnet with (a nibble)
+	4 bits gives you 16 blocks/subnets (2^4 = 16)
+
+If you are a home network you will get a /64 and not be able to subnet because 
+	128 (address length) - 64 (network id) - 64 (host id) = 0 bits to subnet with
+	if you start stealing from the hosts, then the hosts can no longer use their mac address/do SLAAC
+
+but if you dont want to do slaac but still want to do route aggregation, you can use dhcpv6
+
+if you actually get a /60 (god bless your soul) you can subnet really easy since IPv6 does it on the last nibble:
+	each section of an IPv6 address has 2 byte
+	each byte is represented by two hexidecimal numbers since a byte is made up of 2 nibbles
+	nibbles can be used to represent a hexidecimal number
+	we subnet on the nibble
+	for 0000 (4th hextet), next subnet is 0001, next is 0002, forever
+
+since you get nibbles to subnet, you get 16^nibblecount of subnets
+	/56 uses 00//00// to subnet, giving you 2 nibbles
+	16^2 gives you 256 networks
+	you couldve subnetted symbolically using IPv4, but it would be waste full; IPv6 gives you way more freedom to symbolically subnet:
+		site 1, department 1: 0011
+		site 0, department 15: 000F
+
+basically
+	configure ospf on the interface
+	int lo0
+	 ipv6 address [prefix] eui-64
+	you dont need ipv6 addresses on the interface since everyone can talk to eachother using link local
+		but you could if you want
+		nvm you need it on ports facing hosts/access lans
+
+SLAAC is activated when you configure a port with a global unicast address
+	now the hosts will do EUI-64 after getting the global unicast prefix from the port
+	HOWEVER, it won't be able to get DNS or any of the other DHCP options that DHCP provides
+
+You can run them together, using SLAAC to give out IPs, and DHCP to give out options
+

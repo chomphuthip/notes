@@ -1,0 +1,61 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T08:18:09+09:00
+
+====== tcam ======
+Created Monday 30 October 2023
+
+== access-class for control plane ==
+== access-group for data plane ==
+traffic-filter for ipv6 interface
+
+access list
+[ ] standard numbered
+[ ] standard named
+[ ] extended numbered
+[ ] extended named
+[ ] any
+[ ] host
+[ ] neq
+[ ] eq
+[ ] ip
+[ ] icmp
+[ ] tcp
+[ ] udp
+[ ] time based
+[ ] apply to vty line
+[ ] apply to interface
+[ ] apply for copp
+[ ] apply to crypto map
+[ ] apply to ospf distribute-list
+[ ] apply to ospf filter-list
+[ ] apply to eigrp filter-list
+[ ] apply to bgp filter-list
+[ ] apply to route-map
+
+prefix-list
+[ ] specific prefix
+[ ] ge
+[ ] le
+[ ] ge & le
+[ ] apply to route-map
+[ ] apply to ospf distribute-list
+[ ] apply to ospf filter-list
+[ ] apply to eigrp filter-list
+[ ] apply to bgp filter-list
+
+route-map
+[ ] match
+[ ] set
+[ ] permit
+[ ] deny
+[ ] apply to ospf redistribution
+[ ] apply to eigrp redistribution
+[ ] apply to bgp redistribution
+[ ] apply to vrf for export list
+
+copp
+[ ] acl
+[ ] class-map
+[ ] policy-map
+[ ] applying policymap to control plane

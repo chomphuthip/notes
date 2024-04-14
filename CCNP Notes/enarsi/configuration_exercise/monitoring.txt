@@ -1,0 +1,24 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T08:58:06+09:00
+
+====== monitoring ======
+Created Monday 30 October 2023
+
+IP SLA
+[ ] icmp echo
+[ ] udp echo
+[ ] schedule
+[ ] configure as responder
+
+netflow
+[ ] record
+	[ ] match
+	[ ] collect
+[ ] exporter
+	[ ] destination
+	[ ] transport udp 9999
+	[ ] export-protocol netflow-v9
+[ ] monitor
+	[ ] record
+	[ ] monitor

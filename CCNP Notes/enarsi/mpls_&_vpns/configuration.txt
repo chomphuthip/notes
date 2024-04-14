@@ -1,0 +1,32 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-05T17:20:49+09:00
+
+====== configuration ======
+Created Thursday 05 October 2023
+
+== OUTLINE ==
+1. Enable IGP (OSPF/EIGRP) in MPLS network
+2. Enable MPLS in network
+3. Create VRFs with matching route targets on PEs
+4. Create iBGP adjacency on PEs
+5. Activate VPNv4 on both PEs
+
+== VRF ==
+!used to tell routes appart locally
+rd 1:1
+
+!will exports routes under vrf as rd 3:3
+route-target export 3:3
+
+!will import routes with rds of 3:3 and 6:6
+route-target import 3:3
+route-target import 6:6
+
+== MPLS ==
+!use to confine labels to a certian range, allowing for easier debugging
+mpls label range X000 X999
+
+== BGP ==
+!instead of neighbor X remote-as Y, you activate them. You are already nieghbors, now you activate them for this address family
+neighbor 3.3.3.3 activate

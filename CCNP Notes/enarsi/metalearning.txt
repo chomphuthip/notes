@@ -1,0 +1,7 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-08T19:08:55+09:00
+
+====== metalearning ======
+Created Sunday 08 October 2023
+

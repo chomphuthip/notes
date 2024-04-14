@@ -1,0 +1,21 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-30T08:59:20+09:00
+
+====== mpls ======
+Created Monday 30 October 2023
+
+vrf
+route-target for both
+route-target for service to import
+route-target for client to import
+
+pe2ce
+[ ] eigrp
+[ ] ospf
+
+pe2p
+[ ] eigrp
+[ ] ospf
+[ ] bgp route-reflector
+[ ] bgp confed

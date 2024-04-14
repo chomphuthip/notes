@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-11-07T17:13:59+09:00
+
+====== bfd ======
+Created Tuesday 07 November 2023
+
+Both routers have to be running CEF
+
+BFD is a lightweight, low overhead way to detecting connection issues
+
+basically stop sending eigrp or ospf hellos, run a driver to simulate that,
+	actually use bfd to detect link failure and let the eigrp or ospf processes know

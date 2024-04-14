@@ -1,0 +1,18 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-26T06:58:13+09:00
+
+====== routing loops ======
+Created Thursday 26 October 2023
+
+Redistribution can cause routing loops by routers learning a route from a routing protocol with a lower AD or lower metric.
+
+{{.\pasted_image001.png}}
+1. Router 5 shares a directly connected network  A with Router 1 using OSPF (Type 1 LSA)
+2. Router 1 shares the Type 1 LSA with Router 4
+3. Router 4 redistributes the route into EIGRP
+4. Router 4 shares prefix with Router 3
+5. Router 3 shares prefix with Router 2
+6. Router 2 shares prefix with Router 1
+7. Router 1 replaces route to network A in the routing table (learned from OSPF) with the route learned by EIGRP 
+

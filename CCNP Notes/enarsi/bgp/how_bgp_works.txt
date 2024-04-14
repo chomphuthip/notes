@@ -1,0 +1,28 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-11-22T07:25:35+09:00
+
+====== how bgp works ======
+Created Wednesday 22 November 2023
+
+NRLI - network layer reachability information
+	basically a route
+
+NRLIs have a 
+	prefix
+	next-hop
+	AS_Path
+	Other attributes (weight, local pref, MED)
+
+When you receive an NRLI, you must have reachability to the next hop
+	In eBGP, the next hop will be the advertising peer (not sure if the peer modifies the NRLI to make itself be the next hop, or if the recieving router changes it)
+	In iBGP, the next hop is maintained from the originating router
+
+The NRLI is then installed into the RIB (if it provides the best path to get to the prefix)
+	NRLIs installed into the RIB are installed as recursive routes pointing to the next hop
+	So if the next hop is unreachable, the route is not installed in the RIB
+
+In iBGP the next hop is maintained because iBGP networks are expected to consist of directly connect iBGP peers.
+	But when this is not the case, we can use next-hop-self to simulate how eBGP does it.
+	With next-hop-self, any routers directly connected can use the sending router's IP as a next hop 
+

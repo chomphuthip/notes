@@ -1,0 +1,55 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-05T19:30:55+09:00
+
+====== bgp ======
+Created Thursday 05 October 2023
+
+make sure to use loopbacks as update addressses for MPLS
+for normal between ASs, use link addresses
+
+!configure local router to be route reflector
+neighbor [neighbor IP] route-reflector-client
+
+
+!router bgp (FAKE AUTONOMOUS SYSTEM)
+router bgp 65000
+ !put peers only if you are eBGP peering with another internal AS
+ bgp confederation peers 65001
+ !identifier means what the "real" or outward facing AS should be
+ bgp confederation indentifier 100
+
+peer group - exactly the same configs for multiple because actually bgp is going to put out the exact same routing updates
+	for all of them,
+	literally does the processing for one of them, then sends the update to all of them
+	simplifies configuration for engineer, and simplifies caluclations for CPU
+
+peer template - adds templating to configuring  bgp neighbors and has two types:
+	Session Template – Controls neighbor settings, such as TTL security, timers, and so on, it affects the actual BGP session with a neighboring 
+	Policy Template – Controls address family settings, it affects protocol-specific (NLRI) policy (e.g. IPv4 versus IPv6).
+
+template peer-session SESSION_TEMPLATE
+
+template peer-policy POLICY_TEMPLATE
+
+neighbor [ip] wieght [weight value]
+
+bgp default local-preference [value]
+
+When deterministic-med is enabled:
+1. All considerations are compared until MED
+2. All routes with the same AS_PATH are grouped together
+3. The lowest MED in each group is taken
+
+Example:
+Route A goes through AS 100 and AS 200 and has a MED of 100
+Route B goes through AS 100 and AS 200 and has a MED of 200
+Route C goes through AS 50 and AS 200 and has a MED of 100
+
+If the learned order of routes is B, C, A, then
+1. Route A is compared to Route C, all considerations are the same, so oldest wins (Route C)
+2. Route C is compared to Route B, all considerations are the same, so oldest wins (Route B)
+
+The MED was never considered due to the learn time
+
+Also, shouldn't we take into consideration the MED if the path is still going into the same AS (AS 200)

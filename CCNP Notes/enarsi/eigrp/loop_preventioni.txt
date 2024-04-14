@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-10-14T19:07:07+09:00
+
+====== loop preventioni ======
+Created Saturday 14 October 2023
+
+if split horizon stops routes from being advertised on the interface 
+	it recieved the route on, why do you need to turn it off to share
+	routes between two spokes
+
+its because the dmvpn hub has only one interface, so
+	it'll learn 10.0.0.0/24 from tunnel0
+	then it can't advertise it out of tunnel0 back to other dmvpn spokes
+		if split horizon is off, since it learned it from that int
+
+in a normal broadcast network, if a router wants to share a prefix, they will broadcast it
+ so everyone will get the route
+but in dmvpn broadcasting doesnt work normally
