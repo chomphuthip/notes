@@ -1,0 +1,163 @@
+attack surface vs attack vector
+    vector is specific
+    surface refers to all the stuff that can be used
+
+access control types
+
+    discretionary access control (dac)
+        access is decided by the object owner
+        simpler
+        no centralized
+        if i own something, i can give access
+        
+    mandatory access control
+        access is determined by labels and enforced by the engine
+        strictest
+        complex
+        if i own something, i can only give access in accordance with da rules
+
+    rule-based access control
+        access is deteremined by rules applied to the subjecct
+        scalable
+        role creep
+
+    attribute-based access control
+        access is based on the attributes of the subjecct
+        complex
+
+cvss
+    attack vector
+    attack complexity
+    privileges required
+    user interaction
+    scope
+    temporal metrics
+    environmental metrics
+
+data visibility challenge
+    encryption
+    nat
+    timestamps
+    dns tunneling
+    overal control
+    blind spots
+    limited resource monitoring
+
+what is session data
+    session data is a flow (5 tuple)
+
+deep packet inspection vs stateful filtering
+    deep packet inspection is 5=<
+    stateful just keeps track of each flow to make sure its a valid dest
+        since stateful only needs to track flows, its layer 4 only
+    
+elements of an incident response plan
+    incident response plan mission
+    strategies and goals of the incident response plan
+    senior management approval
+    organizational approach
+    communications plan with incident response team
+    metrics
+    roadmap
+
+applying the incident response plan
+    preperation
+    detection and analysis
+    containment, eradication, and recovery
+    post incident
+
+cyber kill chain
+    recon
+    weaponization
+    delivery
+    exploitation
+    installation
+    c2
+    action on objectives
+
+time to
+    detect
+    contain
+    respond
+    control
+
+inline means capturing and doing stuff inline
+tap means copying packets and analyzing it somewhere else
+if you have modes
+    tap will analyze
+    inline will analyze AND drop
+
+---
+nist 800-61 r2
+---
+
+policy
+    signed record of commitment by leaders
+    clear definition of why
+    scope
+    definitions
+    organizational structure and responsibilities
+    prioritization/severity ratings
+    performance measurements
+    reporting/contact forms
+
+plan
+    mission
+    what we want and how we are gonna get it
+    approval from leadership
+    organizational approach (?)
+    communication plan
+    metrics to measure effectiveness
+    feature roadmap
+    how do we fit into the organization
+
+fisma
+    requires federal agencies to report to the united states incident emergency
+    readiness team (blue incident response)
+
+incident response team structure
+    central
+    distributed
+    coordinating
+
+incident response team staffing
+    employees
+    partially outsourced
+    fully outsourced
+
+team model selection considerations
+    24/7 availability
+    full time vs part time
+    morale
+    cost
+    expertise
+
+team outsourcing considerations
+    quality of work (now and later)
+    who is doing what
+    contractor leaking stuff
+    contractor not knowing about specific stuff (scada) (pepw)
+    harder to put evidence together
+    contractor might be dealing with other stuff
+    you should at least have some humans
+
+helping orgs
+    management
+    information assurance
+    it support
+    legal
+    pa
+    human resources
+    continuity planning
+    physical security
+
+team services
+    detection
+    telling everybody about possible attacks
+    education
+
+actual handling
+    preperation (in general, not before handling the actual attack)
+    detection
+    recovery
+    post attack
