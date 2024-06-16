@@ -26,7 +26,7 @@ uses a Wang hash for 32-bit literals and FNV for strings, but someone might not
 need those algorithms. If your keys are already pretty unique (as is the case
 with `netbt.sys`) you don't really need to further spread them out.
 
-This hashing algorithm takes the bottom 4 bits, multiplies them by 0x10, and adds
+This hashing algorithm takes the bottom 4 bits, multiplies them by `0x10`, and adds
 the bottom 4 bits of the second byte. Then the result is modulo'd against the
 map length.
 
