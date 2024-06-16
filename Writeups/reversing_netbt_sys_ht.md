@@ -36,7 +36,7 @@ how that variable changes.
 
 If the variable changes by adding some value, collisions are managed using
 _open addressing_. This means that the next bucket to try is literally the next
-bucket (or `&bucket + N` where N is your probing factor).
+bucket (or `&bucket + N` where `N` is your probing factor).
 
 If the variable changes based on a pointer that it holds, collisions are managed
 using _chaining_. This means that the next bucket is pointed to by a pointer in
