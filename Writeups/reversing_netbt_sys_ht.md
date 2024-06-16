@@ -54,7 +54,8 @@ stored at `bucket + 0xa4`.
 The rest of the function has to do with a child bucket at `bucket + 0x78`.
 ![Child bucket implementation](https://i.imgur.com/AJAgAsX.png)
 
-If the bucket has a child bucket, the `child_key` string is compared against the
-child bucket's key.
+If the bucket has a child bucket, the `child_key` string is compared against the child
+bucket's key (another example of C granting you the ability to do/add whatever you want 
+in your implementation if you aren't gatekept by skill issues). 
 
-The value pointed to by `output` is set to the pointer to the matching bucket.
+The value pointed to by `output` is set to the pointer of the matching bucket.
