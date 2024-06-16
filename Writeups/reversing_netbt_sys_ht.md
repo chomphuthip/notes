@@ -52,4 +52,9 @@ determining the key length, the provided key is compared with the bucket's key,
 stored at `bucket + 0xa4`.
 
 The rest of the function has to do with a child bucket at `bucket + 0x78`.
-[Child bucket implementation](https://i.imgur.com/jEqT4ZV.png)
+![Child bucket implementation](https://i.imgur.com/AJAgAsX.png)
+
+If the bucket has a child bucket, the `child_key` string is compared against the
+child bucket's key.
+
+The value pointed to by `output` is set to the pointer to the matching bucket.
