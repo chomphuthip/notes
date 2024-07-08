@@ -13,7 +13,7 @@ Hash tables lookups are pretty simple:
 3. Manage collisions based on the implementation
 3. Compare key to bucket's key. If key isn't matching, go to next bucket.
 
-The hashing implementation is pretty simple:
+The hashing implementation is pretty simple:\
 ![Hashing and Mod](https://i.imgur.com/Kha239A.png)
 
 I think this is where C really shines as a programming language. In most other
@@ -42,7 +42,7 @@ If the variable changes based on a pointer that it holds, collisions are managed
 using _chaining_. This means that the next bucket is pointed to by a pointer in
 the current bucket, forming a singly-linked list.
 
-This is the primary searching implementation:
+This is the primary searching implementation:\
 ![Searching Implementation](https://i.imgur.com/MQZhnTH.png)
 
 `next_bucket` is set to the pointer at `bucket + 0x0`, meaning that this
@@ -51,7 +51,7 @@ is checked to see if the key is variable length or just `0x10` long. After
 determining the key length, the provided key is compared with the bucket's key,
 stored at `bucket + 0xa4`.
 
-The rest of the function has to do with a child bucket at `bucket + 0x78`.
+The rest of the function has to do with a child bucket at `bucket + 0x78`.\
 ![Child bucket implementation](https://i.imgur.com/AJAgAsX.png)
 
 If the bucket has a child bucket, the `child_key` string is compared against the child
