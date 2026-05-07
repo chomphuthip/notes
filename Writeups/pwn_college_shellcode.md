@@ -63,7 +63,7 @@ BITS 64
  
 _start:
  mov edi, bin_str
- mov esi, bin_str
+ mov esi, flag_str
  xor rdx, rdx
 
  push 59
