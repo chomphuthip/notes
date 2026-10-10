@@ -1,4 +1,4 @@
-# B-Tier Fuzzing Performance with D-Tier Reverse Engineering: Using Native Control-Flow Primitives for Persistant Fuzzing
+# B-Tier Fuzzing Performance with D-Tier Reverse Engineering: Using Native Control-Flow Primitives for Persistent Fuzzing
 
 **BLUF**: When fuzzing embedded JS engines (or any other language) where you don't want to invest time reverse engineering and harnessing the engine itself _OR_ when you want to fuzz native APIs the target exposes to the engine, you can use a `while()` loop and `eval()` to execute your test cases fast(er) than restarting the program every iteration.
 
